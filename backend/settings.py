@@ -11,9 +11,15 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,19 +31,22 @@ SECRET_KEY = 'django-insecure-g(6f7gikq$54gdu4!+@dd&7v2pt1b&+(nhj8z$)t8r#gbil7q+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1"]
+
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',  # Must be first for Channels
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
- "pgvector.django",
+    'channels',
+    "pgvector.django",
     "chat",
     "corsheaders",
 ]
@@ -53,9 +62,10 @@ MIDDLEWARE = [
 ]
 MIDDLEWARE.insert(0, "corsheaders.middleware.CorsMiddleware")
 
-CORS_ALLOWED_ORIGINS = [
-    "https://shyam-thakkar.github.io",  # your portfolio frontend
-]
+CORS_ALLOWED_ORIGINS = os.getenv(
+    'CORS_ALLOWED_ORIGINS', 
+    'https://shyam-thakkar.github.io,http://localhost:3000'
+).split(',')
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -75,6 +85,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
+ASGI_APPLICATION = 'backend.asgi.application'
+
+# Channel layers for WebSocket support
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [(os.getenv('REDIS_HOST', 'localhost'), int(os.getenv('REDIS_PORT', 6379)))],
+        },
+    },
+}
 
 
 # Database
@@ -83,11 +104,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "portfolio_rag",
-        "USER": "rag_user",
-        "PASSWORD": "StrongPassword123",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": os.getenv('DB_NAME', 'portfolio_rag'),
+        "USER": os.getenv('DB_USER', 'rag_user'),
+        "PASSWORD": os.getenv('DB_PASSWORD', 'StrongPassword123'),
+        "HOST": os.getenv('DB_HOST', 'localhost'),
+        "PORT": os.getenv('DB_PORT', '5432'),
     }
 }
 
