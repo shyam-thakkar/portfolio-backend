@@ -6,7 +6,8 @@ import os
 from typing import List, Dict, Any, Optional
 from functools import lru_cache
 
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_groq import ChatGroq
 from langchain_community.vectorstores.pgvector import PGVector
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
@@ -18,14 +19,18 @@ from .models import Document
 class RAGService:
     """
     Optimized RAG service with caching and lazy loading
+    Uses Google embeddings and Groq LLM
     """
     
     def __init__(self):
         """Initialize with lazy loading for expensive operations"""
         self.google_api_key = os.getenv('GOOGLE_API_KEY')
+        self.groq_api_key = os.getenv('GROQ_API_KEY')
         
         if not self.google_api_key:
             raise ValueError("GOOGLE_API_KEY environment variable is not set")
+        if not self.groq_api_key:
+            raise ValueError("GROQ_API_KEY environment variable is not set")
         
         # Cache expensive objects
         self._embeddings = None
@@ -48,12 +53,13 @@ class RAGService:
     
     @property
     def llm(self):
-        """Lazy load LLM (Gemini 2.0 Flash)"""
+        """Lazy load LLM (Groq - llama-3.3-70b-versatile)"""
         if self._llm is None:
-            self._llm = ChatGoogleGenerativeAI(
-                model="gemini-3.1-flash",
+            self._llm = ChatGroq(
+                model="meta-llama/llama-prompt-guard-2-86m",
                 temperature=0.7,
-                google_api_key=self.google_api_key
+                max_tokens=500,
+                groq_api_key=self.groq_api_key
             )
         return self._llm
     
