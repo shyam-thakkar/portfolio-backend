@@ -56,9 +56,8 @@ class RAGService:
         """Lazy load LLM (Groq - llama-3.3-70b-versatile)"""
         if self._llm is None:
             self._llm = ChatGroq(
-                model="meta-llama/llama-prompt-guard-2-86m",
+                model="llama-3.1-8b-instant",
                 temperature=0.7,
-                max_tokens=500,
                 groq_api_key=self.groq_api_key
             )
         return self._llm

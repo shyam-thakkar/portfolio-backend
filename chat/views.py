@@ -68,7 +68,7 @@ def chat_history(request, session_id):
             page_size = 100
         
         # Get all messages for this session
-        all_messages = ChatHistory.objects.filter(session=session).order_by('-timestamp')
+        all_messages = ChatHistory.objects.filter(session=session).order_by('timestamp')
         total_messages = all_messages.count()
         
         # Calculate pagination
