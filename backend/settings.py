@@ -32,11 +32,15 @@ SECRET_KEY = 'django-insecure-g(6f7gikq$54gdu4!+@dd&7v2pt1b&+(nhj8z$)t8r#gbil7q+
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "34.180.48.177.sslip.io",
-    "34-180-48-177.sslip.io",
-    "localhost",
-    "127.0.0.1",
+    '34.180.48.177.sslip.io',
+    '34-180-48-177.sslip.io',
+    'localhost',
+    '127.0.0.1',
+
+    # Add Cloudflare Tunnel Domain
+    'ten-outside-roberts-percentage.trycloudflare.com',
 ]
+
 CSRF_TRUSTED_ORIGINS = [
     "https://34.180.48.177.sslip.io",
     "http://34.180.48.177.sslip.io",
