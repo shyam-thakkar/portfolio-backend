@@ -31,7 +31,17 @@ SECRET_KEY = 'django-insecure-g(6f7gikq$54gdu4!+@dd&7v2pt1b&+(nhj8z$)t8r#gbil7q+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "34.180.48.177.sslip.io",
+    "34-180-48-177.sslip.io",
+    "localhost",
+    "127.0.0.1",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://34.180.48.177.sslip.io",
+    "http://34.180.48.177.sslip.io",
+]
+
 
 
 
