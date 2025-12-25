@@ -8,10 +8,10 @@ SHYAM_PORTFOLIO_DATA = [
     {
         "category": "about",
         "title": "Introduction",
-        "text": """I'm Shyam Thakkar, a GenAI Developer specializing in building intelligent applications 
-        using Large Language Models, LangChain, and LangGraph. I have expertise in AI-driven automation, 
-        RAG systems, and integrating LLMs with complex business logic. I'm passionate about creating 
-        practical AI solutions that solve real-world problems.""",
+        "text": """I'm Shyam Thakkar, a Gen AI Developer and Product Builder. I'm the creator of AIFolio.in — 
+        I build production-grade AI products using Python with Django and FastAPI for backend. I specialize 
+        in Gen AI applications with LangChain and LangGraph, creating intelligent SaaS solutions powered by AI. 
+        I have 1.5 years of experience and have worked on 10+ GenAI projects. I'm based in Ahmedabad, Gujarat, India.""",
         "source": "portfolio"
     },
     {
@@ -20,14 +20,16 @@ SHYAM_PORTFOLIO_DATA = [
         "text": """I'm currently working as an SDE-1 (GenAI Developer) at WeServeCodes Pvt Ltd, where I engineer 
         AI-driven automation systems and build robust data-extraction pipelines. I have experience in 
         developing RAG systems, custom tool-call frameworks for LLMs, and dynamic content-generation 
-        workflows. My background includes AI/ML internships and data analysis roles.""",
+        workflows. My background includes AI/ML internships and data analysis roles. My flagship product 
+        is AIFolio.in, an AI-powered portfolio publishing platform that I built and launched.""",
         "source": "resume"
     },
     {
         "category": "about",
         "title": "Contact Information",
         "text": """You can reach me at work.shyamthakkar@gmail.com or call me at +91 9979194059. 
-        I'm also active on LinkedIn and GitHub. My portfolio website is at shyam-thakkar.github.io.""",
+        I'm also active on LinkedIn and GitHub. I'm based in Ahmedabad, Gujarat, India. 
+        You can check out my flagship product AIFolio at aifolio.in.""",
         "source": "resume"
     },
     
@@ -243,6 +245,72 @@ SHYAM_PORTFOLIO_DATA = [
         problems, particularly in automation, data extraction, and intelligent content generation. I stay 
         updated with the latest developments in GenAI and continuously experiment with new tools and 
         techniques.""",
+        "source": "portfolio"
+    },
+    
+    # ===== AIFOLIO - FLAGSHIP PRODUCT =====
+    {
+        "category": "projects",
+        "title": "AIFolio - AI-Powered Portfolio Publishing Platform",
+        "text": """I built and launched AIFolio (aifolio.in), an AI-powered portfolio builder and publishing 
+        platform that transforms a user's resume into a structured, editable portfolio and publishes it as 
+        a live personal website on a unique subdomain (e.g., username.aifolio.in). The platform features 
+        strong draft-publish separation, versioned publishing, and safe AI augmentation, ensuring users 
+        retain full control over what is publicly visible while benefiting from AI-assisted content 
+        generation. The system is production-grade, multi-tenant, and built with a focus on data isolation, 
+        immutability, and user trust. This is my flagship product demonstrating end-to-end product ownership 
+        and real-world GenAI integration.""",
+        "source": "portfolio"
+    },
+    {
+        "category": "projects",
+        "title": "AIFolio - Core Philosophy and User Workflow",
+        "text": """AIFolio is built around three core principles: (1) Nothing is public by default - all user 
+        edits happen in draft mode and content is only visible publicly after an explicit publish action. 
+        (2) Publishing is versioned and reversible - each publish creates an immutable snapshot, and users 
+        can republish updates or unpublish without data loss. (3) AI assists but never overrides user intent - 
+        AI-generated content is controlled, reviewable, and derived strictly from user-provided data. The 
+        user workflow includes resume upload (PDF/DOCX), LLM-powered structured JSON extraction, real-time 
+        split editor with draft preview, username selection for permanent identity, atomic versioned 
+        publishing, and safe unpublish behavior with preserved drafts and snapshots.""",
+        "source": "portfolio"
+    },
+    {
+        "category": "projects",
+        "title": "AIFolio - AI Features and RAG Chatbot",
+        "text": """AIFolio includes powerful AI features: (1) AI Resume Structuring - uses LLM to transform 
+        unstructured resume text into structured JSON for editing, publishing, and AI-powered features. 
+        (2) AI Rewrite - section-aware, prompt-controlled rewriting assistance that is non-destructive and 
+        applies only to drafts. (3) Portfolio-Aware Chatbot using Controlled RAG - on publish, the system 
+        generates canonical 'user truths' from structured JSON, embeds them in a vector database with strict 
+        user_id metadata. Retrieval enforces mandatory metadata filtering before vector similarity search, 
+        guaranteeing multi-tenant isolation. On republish, all vectors are removed and fresh truths are 
+        regenerated. The chatbot only answers questions grounded in published data and refuses queries 
+        outside available information to prevent hallucination.""",
+        "source": "portfolio"
+    },
+    {
+        "category": "projects",
+        "title": "AIFolio - Technical Architecture",
+        "text": """AIFolio's technical stack includes: Frontend built with Next.js featuring real-time editor 
+        and preview modes, Backend with Django-based APIs, Async Processing with background tasks for 
+        extraction and AI generation, Vector Database for metadata-scoped RAG, Reverse Proxy with Nginx, 
+        Process Management using PM2 for frontend and Gunicorn for backend, and Networking via Cloudflare 
+        for SSL and wildcard subdomains. Key engineering challenges solved include draft vs live isolation, 
+        atomic publishing, username uniqueness and reservation, multi-tenant AI safety, deterministic RAG 
+        updates, preventing AI hallucination, safe unpublish behavior, and production-ready infrastructure 
+        for subdomain-based SaaS with wildcard DNS routing.""",
+        "source": "portfolio"
+    },
+    {
+        "category": "achievements",
+        "title": "AIFolio Product Launch",
+        "text": """I successfully built and launched AIFolio (aifolio.in) as a complete production-grade 
+        SaaS product. This demonstrates my ability to own a product end-to-end, from conception through 
+        development to deployment. The project showcases real-world GenAI integration with safe and 
+        explainable AI systems, multi-tenant architecture with proper data isolation, strong UX and 
+        system thinking, and production deployment skills including subdomain-based routing, Cloudflare 
+        integration, and scalable infrastructure.""",
         "source": "portfolio"
     },
 ]
